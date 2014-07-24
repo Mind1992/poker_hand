@@ -8,18 +8,21 @@ def poker_hand(cards)
     array_suites << card.slice(-1)
   end
 
+
   sorted_cards = array_numbers.sort
+
+
   counter = 0
   sorted_cards.each do |string|
     counter += string
   end
-  if sorted_cards[0]==10 && counter % 5 == 0 && array_suites.uniq.length ==1
+  if sorted_cards[0]==10 && sorted_cards.each_cons(2).all? { |a,b| a + 1 ==b } && array_suites.uniq.length ==1
     return "royal flush"
-  elsif counter % 5 == 0 && array_suites.uniq.length ==1
+  elsif sorted_cards.each_cons(2).all? { |a,b| a + 1 ==b } && array_suites.uniq.length ==1
     return "straight flush"
   elsif array_suites.uniq.length == 1
     return "flush"
-  elsif counter % 5 == 0
+  elsif sorted_cards.each_cons(2).all? { |a,b| a + 1 ==b }
     return "straight"
   end
 
@@ -45,7 +48,7 @@ def poker_hand(cards)
   end
 end
 
-p poker_hand(['10S', '11S', '12S', '13S', '14S'])
+p poker_hand(['3S', '4S', '5S', '6S', '7S'])
 
 
 

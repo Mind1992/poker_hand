@@ -37,5 +37,9 @@ describe("poker_hand") do
   it('finds a royal flush') do
     expect(poker_hand(['10S','11S','12S','13S','14S'])).to eq("royal flush")
   end
+
+  it('allows A to be 1 or 14') do
+    expect(poker_hand(['1S','2S','3S','4S','5S'])).to eq("straight flush")
+  end
 end
 
